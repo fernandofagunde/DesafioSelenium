@@ -47,11 +47,13 @@ public class Suite {
 		menu.mouseHoverMenuQA();
 		cadastroCliente.mouseHoverMenuClientes();
 		cadastroCliente.clickMenuIncluirCliente();
-		cadastroCliente.preencherNome("Fernando Fagundes");
+		cadastroCliente.preencherNome("Fernando" );
 		cadastroCliente.preencherCPF("18671343065");
 		cadastroCliente.verificarStatus();
-		cadastroCliente.preencherSaldoDisponivel("10000000");
+		cadastroCliente.preencherSaldoDisponivel("10000");
 		cadastroCliente.clicarBotaoSalvar();
+		cadastroCliente.validarMensagemSucesso();
+		
 
 	}
 

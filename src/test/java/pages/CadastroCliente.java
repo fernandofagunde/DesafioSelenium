@@ -3,10 +3,14 @@ package pages;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CadastroCliente {
 	private WebDriver driver;
@@ -18,6 +22,7 @@ public class CadastroCliente {
 	private By ativo = By.id("status");
 	private By campoSaldoDisponivel = By.id("saldoCliente");	
 	private By botaoSalvar = By.id("botaoSalvar");	
+	private By mensagemClienteSalvo = By.xpath("//strong[contains(.,'Cliente salvo com sucesso')]");	
 
 	public CadastroCliente(WebDriver driver) {
 		this.driver = driver;
@@ -54,5 +59,12 @@ public class CadastroCliente {
 
 	public void clicarBotaoSalvar() {
 		driver.findElement(botaoSalvar).click();
+	}
+	
+	public void validarMensagemSucesso() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10),Duration.ofMillis(500));
+		WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(mensagemClienteSalvo));
+		assertEquals( messageElement.getText(), "Cliente salvo com sucesso");
+
 	}
 }
